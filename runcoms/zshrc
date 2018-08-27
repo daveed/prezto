@@ -33,7 +33,7 @@ a dcudl='dcud && dcl'
 
 # Git
 a git-remove-untracked='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d'
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+# export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
 # Elixir iex history
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -45,3 +45,9 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 prompt spaceship
+
+# tmux highlighting
+export TERM=xterm-256color
+
+# Postgres
+export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
