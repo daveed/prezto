@@ -43,8 +43,8 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 . ${HOME}/.asdf/completions/asdf.bash
 
 # Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
+#autoload -U promptinit; promptinit
+#prompt spaceship
 
 # tmux highlighting
 export TERM=xterm-256color
