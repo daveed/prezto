@@ -48,11 +48,15 @@ function prompt_peepcode_setup {
   # Set ruby-info parameters.
   zstyle ':prezto:module:ruby:info:version' format ' %F{white}%v%f'
 
+  # Elixir info
+  # elixir_info=`${HOME}/.asdf/bin/asdf current | awk '{print $2}'`
+
   # Define prompts.
   PROMPT="
 %~
 %(?.%F{green}${1:-☻ }%f.%F{red}${1:-☻ }%f) "
 RPROMPT='${ruby_info[version]}${git_info[rprompt]}'
+#RPROMPT='${elixir_info}${git_info[rprompt]}'
 
 }
 
