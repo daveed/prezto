@@ -10,4 +10,98 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# rbenv
+eval "$(rbenv init -)"
+
+# Custom aliases
+alias a='alias'
+
+## Docker
+a dps='docker ps'
+a dpsa='dps -a'
+a di='docker images'
+a dia='docker images -a'
+# a dirm="di | grep none | awk '{print $3}' | xargs docker rmi"
+# a diarm="dia | grep none | awk '{print $3}'"
+
+a dcb='docker-compose build --force-rm'
+a dcu='docker-compose up --remove-orphans'
+a dcud='docker-compose up --remove-orphans -d'
+a dcs='docker-compose stop'
+a dcbu='dcb && dcu'
+a dcsbu='dcs && dcbu' # harder
+a dcl='docker-compose logs -f'
+a dcudl='dcud && dcl'
+
+# Git
+a git-remove-untracked='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d'
+
+# AWS Elastic Beanstalk
+a eb-status='echo `eb status --profile fintech-dev-admin | grep -i "deployed version"|cut -d : -f2`'
+
+# ngrok
+a ngrok-start='ngrok http -subdomain=daveed-local 3000'
+
+# puma
+puma-kill() {
+  ps aux | grep -i puma | grep -v 'grep -i puma' | awk '{print $2}' | xargs kill -9
+}
+
+# ImageMagick
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+
+# Elixir iex history
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+# Elixir version manager
+. ${HOME}/.asdf/asdf.sh
+. ${HOME}/.asdf/completions/asdf.bash
+
+# tmux highlighting
+export TERM=xterm-256color
+
+# Postgres
+export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
+
+# Maven
+export PATH="/usr/local/maven/apache-maven-3.6.1/bin:$PATH"
+
+# Ports
+a tcp-listen='lsof -PiTCP -sTCP:LISTEN'
+
+# noglob
+a sed='noglob sed'
+a grep='noglob grep'
+a rake='noglob rake'
+a bundle='noglob bundle'
+
+# Ruby
+a ruby-syntax='find . | grep ".*\.rb$" | xargs -L 1 ruby -c'
+
+# # Go
+# export GOPATH=${HOME}/www/go
+# export GOROOT=/usr/local/opt/go/libexec
+# export PATH=${PATH}:${GOPATH}/bin
+# export PATH=${PATH}:${GOROOT}/bin
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/daveed/Documents/www/ruby/welcome/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/daveed/Documents/www/ruby/welcome/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/daveed/Documents/www/ruby/welcome/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/daveed/Documents/www/ruby/welcome/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/daveed/Documents/www/ruby/welcome/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/daveed/Documents/www/ruby/welcome/serverless/node_modules/tabtab/.completions/slss.zsh
+
+# Homebrew
+export HOMEBREW_GITHUB_API_TOKEN=1875a96cbe231ceb53d4f7e52adf07292142ed79
+
+# Bundler
+export BUNDLER_EDITOR=/usr/local/bin/code
+
+# GPG
+# eval `ssh-agent -s` && ssh-add -K ~/.ssh/id_rsa
+
+# Add .NET Core SDK tools
+export PATH="$PATH:/Users/daveed/.dotnet/tools"
