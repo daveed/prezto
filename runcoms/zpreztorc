@@ -38,7 +38,7 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'contrib-elixir' \
+  'elixir' \
   'contrib-prompt' \
   'prompt' \
   'git' \
